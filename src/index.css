@@ -1,13 +1,516 @@
-body {
+/* ------------------- Reset ------------------- */
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* ------------------- Estrutura geral ------------------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(165deg, #fcfbfb, #001d1d);
+  line-height: 1.6;
+  min-height: 100vh;
+  text-align: center;
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #eee;
+}
+
+/* Tema claro padrão */
+body {
+  background-color: #fff;
+  color: #222;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Tema escuro */
+body.dark {
+  background-color: #121212;
+  color: #eee;
+}
+
+.app.dark {
+  background-color: #121212;
+  color: #eee;
+}
+
+/* Ajuste containers */
+.projetos-container {
+  background-color: #f9f9f9;
+  transition: background-color 0.3s ease;
+}
+
+body.dark .projetos-container {
+  background-color: #222;
+}
+
+/* Botões toggle */
+button.botao-toggle {
+  background-color: #ddd;
+  color: #222;
+  border-radius: 8px;
+  border: none;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark button.botao-toggle {
+  background-color: #444;
+  color: #eee;
+}
+
+/* Links, textos, sombras, etc podem ser ajustados conforme preferir */
+
+
+.app {
+  padding: 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  filter: drop-shadow(0 0 0.4rem rgba(255, 75, 43, 0.25));
+}
+
+/* ------------------- Tipografia ------------------- */
+h1,
+h2,
+h3 {
+  color: #070707;
+  font-family: 'Poppins', sans-serif;
+}
+
+p,
+li,
+a,
+span {
+  color: #070707;
+  font-size: 12px;
+  font-family: 'Inter', sans-serif;
+}
+
+.titulo-destaque {
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.titulo-portfolio {
+  margin-top: 2rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #2563eb;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #111827;
+}
+
+/* ------------------- Cabeçalho ------------------- */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  padding: 1rem 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08), 0 0 8px #ff4b2b44;
+  margin-bottom: 2rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.header:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12), 0 0 16px #ff4b2baa;
+}
+
+.avatar {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 1rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2), 0 0 10px #ff4b2baa;
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3), 0 0 20px #ff416c;
+}
+
+.menu-icon {
+  font-size: 28px;
+  cursor: pointer;
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #000000;
+  position: fixed;
+  top: 0;
+  right: 0;
+}
+
+.menu-icon:hover {
+  transform: scale(1.2) rotate(15deg);
+  color: #ff4b2b;
+}
+
+.menu-icon:hover {
+  transform: scale(1.1);
+}
+
+
+/* ------------------- Menu Mobile ------------------- */
+.menu-mobile {
+  background: linear-gradient(15deg, #fcfbfb, #027474);
+  border-radius: 16px;
+  box-shadow: 0 6px 30px rgba(255, 75, 43, 0.5);
+  backdrop-filter: blur(10px);
+  color: rgb(14, 13, 13);
+  border: 1px solid #ff4b2b88;
+  transition: box-shadow 0.3s ease;
+  width: 90%;
+  max-width: 500px;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeSlideOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
+
+.menu-mobile:hover {
+  box-shadow: 0 8px 40px rgba(255, 75, 43, 0.7);
+}
+
+.menu-mobile h1 {
+  border-bottom: 1px solid rgb(5, 5, 5);
+  margin-bottom: 1rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* ------------------- Título de projetos ------------------- */
+.titulo-projeto {
+  border-bottom: 1px solid transparent;
+
+  background-color: #06f7c262;
+  border-radius: 50px;
+  font-family: "Gloock", serif;
+  font-weight: 700;
+  font-style: normal;
+  padding: 8px 14px;
+  width: 100%;
+  margin: 0.75rem 0;
+  cursor: pointer;
+  font-size: 1.1rem;
+  color: #fafcf7;
+  box-shadow: 0 0 8px #2a2a2bb4;
+}
+
+.titulo-projeto:hover {
+  border-color: #f3f4f7;
+  background-color: #3b82f6a1;
+  box-shadow: 0 0 12px 3px #3b82f6aa, 0 0 30px 6px #1e40afcc;
+  transform: scale(1.05);
+  font-size: 20px;
+
+}
+
+/* ------------------- Botões e Inputs ------------------- */
+.input-estilizado {
+  padding: 0.8rem 1rem;
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  font-size: 1rem;
+  outline: none;
+  background: white;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.input-estilizado:focus {
+  border-color: #4f46e5;
+  box-shadow: 0 0 8px 3px rgba(79, 70, 229, 0.4), inset 0 0 6px rgba(79, 70, 229, 0.15);
+}
+
+.botao-enviar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.4rem;
+  background: linear-gradient(45deg, #4f46e5, #1e40af);
+  color: white;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 14px;
+  cursor: pointer;
+  box-shadow: 0 0 12px #4f46e5cc, 0 4px 15px rgba(31, 33, 96, 0.6);
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.25s ease;
+  user-select: none;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.botao-enviar:hover {
+  background: linear-gradient(45deg, #1e40af, #4f46e5);
+  box-shadow: 0 0 20px #1e40afcc, 0 6px 20px rgba(31, 33, 96, 0.8);
+  transform: scale(1.05);
+}
+
+.botao-curiosidade {
+  margin-top: 1rem;
+  padding: 0.7rem 1.4rem;
+  background: linear-gradient(45deg, #ff4b2b, #ff416c);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 0 12px #ff416ccc, 0 2px 10px rgba(255, 65, 108, 0.6);
+  transition: background 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+  user-select: none;
+}
+
+.botao-curiosidade:hover {
+  background: linear-gradient(45deg, #ff416c, #ff4b2b);
+  box-shadow: 0 0 24px #ff416cdd, 0 4px 20px rgba(255, 65, 108, 0.8);
+  transform: scale(1.07);
+}
+
+/* ------------------- Botão fechar ------------------- */
+.fechar-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: #ff4b2b;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  padding: 0.4rem;
+  cursor: pointer;
+  z-index: 1000;
+  transition: background 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  filter: drop-shadow(0 0 1px #ff4b2b);
+  will-change: transform;
+}
+
+.fechar-btn:hover {
+  background: #ff416c;
+  transform: scale(1.15) rotate(10deg);
+  box-shadow: 0 4px 12px #ff416c;
+}
+
+/* ------------------- Cards de Projeto ------------------- */
+.card-projeto {
+  justify-items: center;
+  text-align: center;
+  padding: 1.5rem;
+  margin: 1rem 0;
+  border-radius: 20px;
+  background: linear-gradient(145deg, #2b2020, #25191a);
+  border: 2px solid transparent;
+  color: #fff;
+  box-shadow: 0 0 20px #ff4b2b88, inset 0 0 15px #ff4b2b44;
+  transition: transform 0.3s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-projeto:hover {
+  transform: translateY(-6px) scale(1.03);
+  border-color: #ff4b2b;
+  box-shadow: 0 0 40px #ff4b2bbb, inset 0 0 20px #ff416d99;
+}
+
+.card-projeto h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  text-transform: capitalize;
+  color: #74a9f8;
+  text-shadow: 0 0 8px #74a9f8cc;
+  user-select: text;
+}
+
+.card-projeto p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #ddd;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+  user-select: text;
+}
+
+.card-projeto.loading::after {
+  content: "⏳";
+  font-size: 2.4rem;
+  animation: pulse 1.3s ease-in-out infinite;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  user-select: none;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.2;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.2;
+  }
+}
+
+.card-projeto .botoes {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.card-projeto .botoes a {
+  text-decoration: none;
+  background: linear-gradient(135deg, #173577, #2b3a8c);
+  border: 1px solid rgb(250, 253, 250);
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 12px;
+  transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.25s ease;
+  font-weight: 600;
+  font-size: 1rem;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.25);
+  user-select: none;
+}
+
+.card-projeto .botoes a:hover {
+  background: linear-gradient(135deg, #1d4ed8, #2563eb);
+  box-shadow: 0 0 16px #2563ebcc, 0 6px 20px rgba(37, 99, 235, 0.8);
+  transform: scale(1.08);
+}
+
+/* ------------------- Curiosidade ------------------- */
+.card-curiosidade {
+  margin-top: 1rem;
+  background: #fff3ec;
+  padding: 1rem 1.2rem;
+  border-left: 6px solid #ff4b2b;
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+  user-select: text;
+  color: #2a2a2a;
+  font-weight: 600;
+}
+
+.botao-toggle {
+  width: 100%;
+  padding: 12px 0;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #444;
+  background-color: transparent;
+  border: none;
+  border-bottom: 3px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  transition: color 0.3s, border-color 0.3s;
+  margin-bottom: 1rem;
+}
+
+.botao-toggle[aria-expanded="true"] {
+  color: #14cbf8ff;
+  border-bottom-color: #14cbf8ff;
+}
+
+.card-curiosidade {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  box-shadow: 0 2px 10px rgba(20, 203, 248, 0.2);
+  color: #333;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+
+
+/* ------------------- Seção Sobre ------------------- */
+.sobre {
+  padding: 1.5rem 2rem;
+  margin-top: 1rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  color: #111827;
+  
+  background: linear-gradient(165deg, #fcfbfb, #001d1d);
+}
+
+.sobre h2 {
+  font-size: 1.6rem;
+  margin-bottom: 1.3rem;
+  letter-spacing: 0.03em;
+  font-weight: 700;
+}
+
+.sobre ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  justify-content: center;
+}
+
+.sobre li {
+  color: white;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: default;
+}
+
+.sobre li:hover {
+  background: #ced9fa1c;
+}
+
+/* ------------------- Responsivo ------------------- */
+.projetos-container.desktop {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .menu-icon {
+    display: none;
+  }
+
+  .projetos-container.desktop {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .card-projeto {
+    flex: 1 1 30%;
+  }
 }
